@@ -17,18 +17,18 @@ exports.insertData=(req,res,next)=>{
 
             const flag=attributes.some(data=>data.trait_type==='BODY')
             if(flag){
-                let BACKGROUND=attributes.find(data=>data.trait_type==='BACKGROUND')?.value;
-                let HOOD=attributes.find(data=>data.trait_type==='HOOD')?.value;
-                let NEONGLOW=attributes.find(data=>data.trait_type==='NEON GLOW')?.value;
-                let DOOR=attributes.find(data=>data.trait_type==='DOOR')?.value;
-                let COLOR=attributes.find(data=>data.trait_type==='COLOR')?.value;
-                let RIMS=attributes.find(data=>data.trait_type==='RIMS')?.value;
-                let REAREXHAUST=attributes.find(data=>data.trait_type==='REAR EXHAUST')?.value;
-                let SIDEEXHAUST=attributes.find(data=>data.trait_type==='SIDE EXHAUST')?.value;
-                let HEADLIGHTS=attributes.find(data=>data.trait_type==='HEADLIGHTS')?.value;
-                let BUMPER=attributes.find(data=>data.trait_type==='BUMPER')?.value;
-                let ROOF=attributes.find(data=>data.trait_type==='ROOF')?.value;
-                let BODY=attributes.find(data=>data.trait_type==='BODY')?.value;
+                let BACKGROUND=attributes.find(data=>data.trait_type==='BACKGROUND').value;
+                let HOOD=attributes.find(data=>data.trait_type==='HOOD').value;
+                let NEONGLOW=attributes.find(data=>data.trait_type==='NEON GLOW').value;
+                let DOOR=attributes.find(data=>data.trait_type==='DOOR').value;
+                let COLOR=attributes.find(data=>data.trait_type==='COLOR').value;
+                let RIMS=attributes.find(data=>data.trait_type==='RIMS').value;
+                let REAREXHAUST=attributes.find(data=>data.trait_type==='REAR EXHAUST').value;
+                let SIDEEXHAUST=attributes.find(data=>data.trait_type==='SIDE EXHAUST').value;
+                let HEADLIGHTS=attributes.find(data=>data.trait_type==='HEADLIGHTS').value;
+                let BUMPER=attributes.find(data=>data.trait_type==='BUMPER').value;
+                let ROOF=attributes.find(data=>data.trait_type==='ROOF').value;
+                let BODY=attributes.find(data=>data.trait_type==='BODY').value;
                 let TOPSPEED=attributes.find(data=>data.trait_type==='TOP SPEED');
                 let ACCELERATION=attributes.find(data=>data.trait_type==='ACCELERATION');
                 let NITROUS=attributes.find(data=>data.trait_type==='NITROUS');
@@ -61,16 +61,16 @@ exports.insertData=(req,res,next)=>{
                         max_value:ACCELERATION.max_value || 0
                        },
                        NITROUS:{
-                        value:NITROUS?.value || 0,
-                        max_value:NITROUS?.max_value || 0
+                        value:NITROUS.value || 0,
+                        max_value:NITROUS.max_value || 0
                        },
                        HANDLING:{
-                        value:HANDLING?.value || 0,
-                        max_value:HANDLING?.max_value || 0
+                        value:HANDLING.value || 0,
+                        max_value:HANDLING.max_value || 0
                        },
                        ARMOR:{
-                        value:ARMOR?.value || 0,
-                        max_value:ARMOR?.max_value || 0
+                        value:ARMOR.value || 0,
+                        max_value:ARMOR.max_value || 0
                        }
                     },
 
@@ -84,14 +84,14 @@ exports.insertData=(req,res,next)=>{
               
             }else{
                 
-                let Background=attributes.find(data=>data.trait_type==='Background')?.value;
-                let Skin=attributes.find(data=>data.trait_type==='Skin')?.value;
-                let Eyes=attributes.find(data=>data.trait_type==='Eyes')?.value;
-                let Mouth=attributes.find(data=>data.trait_type==='Mouth')?.value;
-                let Head=attributes.find(data=>data.trait_type==='Head')?.value;
-                let Clothing=attributes.find(data=>data.trait_type==='Clothing')?.value;
-                let Weapon=attributes.find(data=>data.trait_type==='Weapon')?.value;
-                let Species=attributes.find(data=>data.trait_type==='Species')?.value;
+                let Background=attributes.find(data=>data.trait_type==='Background').value;
+                let Skin=attributes.find(data=>data.trait_type==='Skin').value;
+                let Eyes=attributes.find(data=>data.trait_type==='Eyes').value;
+                let Mouth=attributes.find(data=>data.trait_type==='Mouth').value;
+                let Head=attributes.find(data=>data.trait_type==='Head').value;
+                let Clothing=attributes.find(data=>data.trait_type==='Clothing').value;
+                let Weapon=attributes.find(data=>data.trait_type==='Weapon').value;
+                let Species=attributes.find(data=>data.trait_type==='Species').value;
                 // console.log(Background,Skin)
                 // let [Background,Skin,Eyes,Mouth,Head,Clothing,Weapon,Species]=attributes;
                  Gallery.create({
@@ -151,7 +151,7 @@ exports.getAvatars=(req,res,next)=>{
     // .limit(limit)
     // .skip(offset)
     .then(async function(response) {
-        const length=await response?.length;  
+        const length=await response.length;  
         res.status(200).json({avatars:response.splice(0,(limit*page)),length:length,flag:true,msg:'Succefully get Avatars'})
     })
     .catch((error)=>{
@@ -322,69 +322,69 @@ exports.getFilterCars=async(req,res,next)=>{
 exports.searchFilterCars=async (req,res,next)=>{
 
     const {background,hood,neonglow,door,color,rims,rearexhaust,sideexhaust,headlights,bumper,roof,body}=req.query;
-    if(background?.length>0){
+    if(background.length>0){
         let Background=await Gallery.distinct('attributes.Background',{"attributes.Background":{$regex: '.*' + background+ '.*',$options: "i"}});
         res.status(200).json({Background:Background});
         return ;
     }
-    if(hood?.length>0){
+    if(hood.length>0){
         let HOOD=await Gallery.distinct('attributes.HOOD',{'attributes.HOOD':{$regex: '.*' + hood + '.*',$options: "i"}});
         res.status(200).json({HOOD:HOOD});
         return ;
 
     }
-    if(neonglow?.length>0){
+    if(neonglow.length>0){
         let NEONGLOW=await Gallery.distinct('attributes.NEONGLOW',{'attributes.NEONGLOW':{$regex: '.*' + neonglow + '.*',$options:"i"}});
         res.status(200).json({NEONGLOW:NEONGLOW});
         return ;
     }
-    if(door?.length>0){
+    if(door.length>0){
         let DOOR=await Gallery.distinct('attributes.DOOR',{'attributes.DOOR':{$regex: '.*' + door + '.*',$options:'i'}});
         res.status(200).json({DOOR:DOOR});
         return ;
     }
-    if(color?.length>0){
+    if(color.length>0){
         let COLOR=await Gallery.distinct('attributes.COLOR',{'attributes.COLOR':{$regex: '.*' + color + '.*',$options:'i'}});
         res.status(200).json({COLOR:COLOR });
         return ;
 
     }
-    if(rims?.length>0){
+    if(rims.length>0){
         let RIMS=await Gallery.distinct('attributes.RIMS',{'attributes.RIMS':{$regex: '.*' + rims + '.*',$options:'i'}});
         res.status(200).json({RIMS:RIMS});
         return ;
 
     }
 
-    if(rearexhaust?.length>0){
+    if(rearexhaust.length>0){
         let REAREXHAUST=await Gallery.distinct('attributes.REAREXHAUST',{'attributes.REAREXHAUST':{$regex: '.*' + rearexhaust + '.*',$options:'i'}});
         res.status(200).json({REAREXHAUST:REAREXHAUST });
         return ;
 
     }
-    if(sideexhaust?.length>0){
+    if(sideexhaust.length>0){
         let SIDEEXHAUST=await Gallery.distinct('attributes.SIDEEXHAUST',{'attributes.SIDEEXHAUST':{$regex: '.*' + sideexhaust + '.*',$options:'i'}});
         res.status(200).json({SIDEEXHAUST:SIDEEXHAUST });
         return ;
 
     }
-    if(headlights?.length>0){
+    if(headlights.length>0){
         let HEADLIGHTS=await Gallery.distinct('attributes.HEADLIGHTS',{'attributes.HEADLIGHTS':{$regex: '.*' + headlights + '.*',$options:'i'}});
         res.status(200).json({HEADLIGHTS:HEADLIGHTS});
         return ;
 
     }
-    if(bumper?.length>0){
+    if(bumper.length>0){
         let BUMPER=await Gallery.distinct('attributes.BUMPER',{'attributes.BUMPER':{$regex: '.*' + bumper + '.*',$options:'i'}});
         res.status(200).json({BUMPER:BUMPER});
         return ;
     }
-    if(roof?.length>0){
+    if(roof.length>0){
         let ROOF=await Gallery.distinct('attributes.ROOF',{'attributes.ROOF':{$regex: '.*' + roof + '.*',$options:'i'}});
         res.status(200).json({ROOF:ROOF});
         return ;
     }
-    if(body?.length>0){
+    if(body.length>0){
         let BODY=await Gallery.distinct('attributes.BODY',{'attributes.BODY':{$regex: '.*' + body + '.*',$options:'i'}});
         res.status(200).json({BODY:BODY});
         return ;
