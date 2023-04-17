@@ -19,7 +19,7 @@
 const Mongoose=require('mongoose');
 // Db Connection
 Mongoose.set("strictQuery", false);
-const mongoose=Mongoose.connect('mongodb://localhost:27017/azuki',{
+const mongoose=Mongoose.connect('mongodb+srv://xovotechnologies:Xovotech@cluster0.vkq7lgt.mongodb.net/azuki',{
     useNewUrlParser: true,
     
 });
